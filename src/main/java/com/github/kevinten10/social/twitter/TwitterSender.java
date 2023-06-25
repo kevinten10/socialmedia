@@ -17,6 +17,11 @@ public class TwitterSender {
     private static String accessToken = "your_access_token";
     private static String accessTokenSecret = "your_access_token_secret";
 
+    /**
+     * 发送Twitter消息
+     *
+     * @apiNote 当前twitter封禁了相关api
+     */
     public static void send(String message) {
         // 创建Twitter实例
         Twitter twitter = new TwitterFactory().getInstance();
