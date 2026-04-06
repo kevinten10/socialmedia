@@ -1,53 +1,92 @@
 import React from 'react';
-import { useCurrentFrame, Sequence } from 'remotion';
+import { useCurrentFrame, Sequence, interpolate, spring, useVideoConfig } from 'remotion';
 
 export const AudioVisualizer: React.FC = () => {
   const frame = useCurrentFrame();
-  const BAR_COUNT = 64;
+  const { fps } = useVideoConfig();
+  const BAR_COUNT = 80;
 
   return (
     <div style={{
       flex: 1, backgroundColor: '#020202', display: 'flex', flexDirection: 'column', 
-      alignItems: 'center', justifyContent: 'center', padding: '50px'
+      alignItems: 'center', justifyContent: 'center', overflow: 'hidden'
     }}>
       
-      <div style={{ fontFamily: '"Orbitron", sans-serif', fontSize: '60px', color: '#fff', marginBottom: '100px', letterSpacing: '10px' }}>
-        AUDIO <span style={{ color: '#ff0080' }}>SPECTRUM</span> ENGINE
+      {/* Background Radial Glow */}
+      <div style={{
+        position: 'absolute', width: '100%', height: '100%',
+        background: 'radial-gradient(circle, rgba(255,0,128,0.1) 0%, transparent 70%)',
+        opacity: 0.5 + Math.sin(frame/10)*0.2
+      }} />
+
+      <div style={{ zIndex: 10, textAlign: 'center', marginBottom: '80px' }}>
+        <div style={{ fontFamily: '"Orbitron", sans-serif', fontSize: '70px', color: '#fff', letterSpacing: '15px', fontWeight: 'bold' }}>
+          NEURAL <span style={{ color: '#ff0080' }}>SPECTRUM</span>
+        </div>
+        <div style={{ marginTop: '10px', fontFamily: '"Fira Code", monospace', fontSize: '24px', color: '#00f2fe', letterSpacing: '5px' }}>
+          SYNTHETIC FREQUENCY ANALYSIS
+        </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-end', height: '400px' }}>
+      <div style={{ display: 'flex', gap: '6px', alignItems: 'center', height: '500px' }}>
         {new Array(BAR_COUNT).fill(0).map((_, i) => {
-          // Mathematical simulation of an Audio FFT using combined Sine waves
-          // This creates a smooth but energetic "beat" effect without a real MP3!
-          const wave1 = Math.sin((frame / 4) + (i * 0.2)) * 100;
-          const wave2 = Math.sin((frame / 2) + (i * 0.8)) * 50;
-          const wave3 = Math.sin((frame / 10) - (i * 0.5)) * 150;
+          // Advanced multi-octave synthesis
+          const distanceToCenter = Math.abs(i - BAR_COUNT / 2) / (BAR_COUNT / 2);
           
-          // Add a "kick drum" beat every 30 frames
-          const beat = (frame % 30 < 5) ? 100 * Math.sin(i) : 0;
+          // Base frequency waves
+          const lowFreq = Math.sin((frame / 8) + (i * 0.1)) * 80;
+          const midFreq = Math.cos((frame / 4) - (i * 0.3)) * 120;
+          const highFreq = Math.sin((frame / 2) + (i * 0.8)) * (50 * (1 - distanceToCenter));
           
-          const rawHeight = 50 + wave1 + wave2 + wave3 + beat;
-          const height = Math.max(10, Math.min(rawHeight, 400)); // Clamp between 10 and 400
+          // Percussive "Kick" effect
+          const kickTrigger = Math.floor(frame / 20);
+          const kickPop = spring({ frame: (frame % 20), fps, config: { damping: 10, stiffness: 200 } });
+          const kickEffect = kickPop * 150 * Math.exp(-distanceToCenter * 5);
+          
+          // Sub-bass rumble
+          const rumble = Math.random() * 20 * (1 - distanceToCenter);
 
-          const isCenter = i > 20 && i < 44;
-          const color = isCenter ? '#ff0080' : '#00f2fe';
+          const rawHeight = 60 + lowFreq + midFreq + highFreq + kickEffect + rumble;
+          const height = Math.max(10, Math.min(rawHeight, 450));
+
+          // Dynamic coloring based on height and position
+          const hue = interpolate(i, [0, BAR_COUNT], [180, 320]);
+          const color = `hsl(${hue}, 100%, 60%)`;
+          const glowColor = `hsl(${hue}, 100%, 50%)`;
 
           return (
             <div key={i} style={{
-              width: '18px',
+              width: '14px',
               height: `${height}px`,
               backgroundColor: color,
-              borderRadius: '10px',
-              boxShadow: `0 0 ${height / 5}px ${color}`,
-              opacity: 0.8 + (height / 800)
+              borderRadius: '20px',
+              boxShadow: `0 0 ${height / 4}px ${glowColor}`,
+              opacity: 0.6 + (height / 600),
+              transform: `scaleY(${1 + (kickPop * 0.2)})`
             }} />
           );
         })}
       </div>
       
-      <div style={{ marginTop: '60px', fontFamily: '"Fira Code", monospace', fontSize: '24px', color: '#666' }}>
-        [ Mathematical FFT Simulation via Pure Sine Waves ]
+      <div style={{ marginTop: '100px', padding: '15px 30px', border: '1px solid #333', borderRadius: '10px', backgroundColor: '#111' }}>
+        <div style={{ fontFamily: '"Fira Code", monospace', fontSize: '22px', color: '#666' }}>
+          STATUS: <span style={{ color: '#4ade80' }}>OPERATIONAL</span> // ANALYZING SYNTH_WAVE_01.EXE
+        </div>
       </div>
+
+      {/* Floating data bits */}
+      {new Array(10).fill(0).map((_, i) => {
+        const top = (i * 10) + '%';
+        const left = (Math.sin(frame/20 + i) * 50 + 50) + '%';
+        return (
+          <div key={i} style={{
+            position: 'absolute', top, left, color: '#ff0080', fontSize: '14px', 
+            fontFamily: 'monospace', opacity: 0.3
+          }}>
+            {Math.random().toString(16).slice(2, 8).toUpperCase()}
+          </div>
+        );
+      })}
 
     </div>
   );
