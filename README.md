@@ -135,4 +135,31 @@ npm run render
 > 渲染程序会自动启动多线程 Headless Browser 并调动 FFmpeg。最终的高清 60 秒视频将极速输出至 `video-generator/out.mp4`。
 
 ---
+
+## 🏗️ 六、 高阶实战场景剖析 (Advanced Demos)
+
+除了 60 秒的宣传主片，本项目还包含了 3 个高度实用的企业级视频 Demo (位于 `src/demos` 目录)。这些场景极大地拓宽了 Remotion 在研发团队日常协作中的应用边界：
+
+### 1. 📊 每日数据播报 (Daily Sync)
+**应用场景：** 自动化 CI/CD 生成每日 GitHub/Jira 战报。
+**布局技巧：** 
+- 采用了严格的**三列等宽 CSS Grid** (`grid-template-columns: repeat(3, 1fr)`) 来约束动态的 `AnimatedCounter`。
+- 结合系统内置的 `new Date().toISOString()`，实现了无需后期的全自动日期水印。
+> 运行命令: `npm run render:daily`
+
+### 2. 🕸️ 架构拓扑演说 (System Architecture)
+**应用场景：** 技术评审会（Review）动态展示微服务流量拓扑与节点关系。
+**布局技巧：** 
+- **计算渲染 (Math Rendering)：** 组件之间的连线不是静态的 SVG，而是基于 React 组件传递的 `X`, `Y` 坐标。在内部使用勾股定理计算连线长度，通过 `Math.atan2` 自动计算连线偏转角度 (`rotate`)，并结合 `spring` 实现“连线正在接通”的动态效果。
+- 这是完全抛弃静态画图，走向“算法绘图”的绝佳范例。
+> 运行命令: `npm run render:arch`
+
+### 3. 🎯 敏捷看板协作 (Project Collaboration)
+**应用场景：** Sprint 冲刺实况展示。
+**布局技巧：** 
+- **混合运动流：** 卡片组件 (Card) 采用了 `interpolate` 进行 X 轴的绝对平移（模拟拖拽），同时叠加了基于 `spring` 的入场缩放 (`scale`)。
+- 背景采用了虚线边框 (`border: dashed`) 和绝对居中，构建了极具极客风格的 Kanban 列 (TODO, IN PROGRESS, DONE)。
+> 运行命令: `npm run render:collab`
+
+---
 *Built with ❤️ via AI-Native Workflows. Code the System. Ride the World.*
