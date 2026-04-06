@@ -6,6 +6,13 @@
   "scripts": {
     "start": "npx remotion studio src/index.tsx",
     "render": "npx remotion render src/index.tsx KevinPromo out.mp4",
+    "render:daily": "npx remotion render src/index.tsx DailyReport out_daily.mp4",
+    "render:arch": "npx remotion render src/index.tsx SystemArchitecture out_arch.mp4",
+    "render:collab": "npx remotion render src/index.tsx ProjectCollaboration out_collab.mp4",
+    "render:audio": "npx remotion render src/index.tsx AudioVisualizer out_audio.mp4",
+    "render:3d": "npx remotion render src/index.tsx ThreeDScene out_3d.mp4",
+    "render:globe": "npx remotion render src/index.tsx GlobeDataFlow out_globe.mp4",
+    "render:scroll": "npx remotion render src/index.tsx ScrollSimulation out_scroll.mp4",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
