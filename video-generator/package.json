@@ -1,0 +1,29 @@
+{
+  "name": "video-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx remotion studio src/index.tsx",
+    "render": "npx remotion render src/index.tsx KevinPromo out.mp4",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@remotion/cli": "^4.0.445",
+    "@remotion/renderer": "^4.0.445",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "^4.0.445",
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "@remotion/google-fonts": "^4.0.445",
+    "lucide-react": "^1.7.0"
+  }
+}

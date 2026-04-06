@@ -1,0 +1,22 @@
+{
+  "name": "KevinTen",
+  "title": "AI-Native Builder \u00B7 Software Architect",
+  "mission": "Design. Execute. Collaborate.",
+  "techStack": [
+    "Cloud-Native",
+    "Microservices",
+    "Apache Dubbo",
+    "LLM Training (IKUN)",
+    "RAG",
+    "Agentic Workflows",
+    "Distributed Systems"
+  ],
+  "projects": ["OpenOctopus", "IKUN-LLM", "CAPA"],
+  "hobbies": ["MOTORCYCLING", "3D PRINTING", "DJing"],
+  "slogan": "Code the System. Ride the World.",
+  "contact": {
+    "website": "kevinten.com",
+    "github": "@kevinten10",
+    "twitter": "@kevinten1024"
+  }
+}
