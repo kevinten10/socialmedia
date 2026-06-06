@@ -7,6 +7,7 @@ import { AudioVisualizer } from './demos/AudioVisualizer';
 import { ThreeDScene } from './demos/ThreeDScene';
 import { GlobeDataFlow } from './demos/GlobeDataFlow';
 import { ScrollSimulation } from './demos/ScrollSimulation';
+import { VideoTechShowcase } from './demos/VideoTechShowcase';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="ThreeDScene" component={ThreeDScene} durationInFrames={450} fps={30} width={1920} height={1080} />
       <Composition id="GlobeDataFlow" component={GlobeDataFlow} durationInFrames={450} fps={30} width={1920} height={1080} />
       <Composition id="ScrollSimulation" component={ScrollSimulation} durationInFrames={450} fps={30} width={1920} height={1080} />
+      <Composition id="VideoTechShowcase" component={VideoTechShowcase} durationInFrames={300} fps={30} width={1920} height={1080} />
     </>
   );
 };

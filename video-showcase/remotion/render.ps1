@@ -9,7 +9,7 @@ New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 Push-Location (Join-Path $root "video-generator")
 try {
   npm run typecheck
-  npx remotion render src/index.tsx DailyReport $output --codec=h264 --crf=28
+  npx remotion render src/index.tsx VideoTechShowcase $output --codec=h264 --crf=28
 }
 finally {
   Pop-Location
