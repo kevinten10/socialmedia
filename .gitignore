@@ -1,11 +1,14 @@
 target/
 .idea
+**/node_modules/
 .env
 .env.*
 !.env.example
 **/account.json
 **/account.local.json
 **/account.private.json
+video-showcase/outputs/*
+!video-showcase/outputs/.gitkeep
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

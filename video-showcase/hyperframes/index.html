@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HyperFrames Pipeline Showcase</title>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="hyperframes-pipeline"
+      data-start="0"
+      data-duration="9"
+      data-track-index="0"
+      data-width="1280"
+      data-height="720"
+    >
+      <div class="orb orb-a" data-layout-ignore></div>
+      <div class="orb orb-b" data-layout-ignore></div>
+      <main class="scene-content">
+        <section class="header">
+          <p class="eyebrow">HYPERFRAMES / HTML TO VIDEO</p>
+          <h1>AI-Native Social Media Video Pipeline</h1>
+          <p class="summary">HTML, CSS, GSAP, and frame-accurate capture for fast agent-authored motion.</p>
+        </section>
+        <section class="pipeline" aria-label="Pipeline">
+          <article class="node plan">
+            <span class="index">01</span>
+            <strong>Plan</strong>
+            <small>Prompt, data, brief</small>
+          </article>
+          <div class="line"></div>
+          <article class="node generate">
+            <span class="index">02</span>
+            <strong>Generate</strong>
+            <small>HTML scenes</small>
+          </article>
+          <div class="line"></div>
+          <article class="node render">
+            <span class="index">03</span>
+            <strong>Render</strong>
+            <small>MP4 output</small>
+          </article>
+          <div class="line"></div>
+          <article class="node publish">
+            <span class="index">04</span>
+            <strong>Publish</strong>
+            <small>Social channels</small>
+          </article>
+        </section>
+        <section class="footer">
+          <div class="metric">
+            <span>duration</span>
+            <strong>9s</strong>
+          </div>
+          <div class="metric">
+            <span>timeline</span>
+            <strong>GSAP</strong>
+          </div>
+          <div class="metric">
+            <span>source</span>
+            <strong>HTML</strong>
+          </div>
+        </section>
+      </main>
+      <style>
+        #root {
+          width: 1280px;
+          height: 720px;
+          overflow: hidden;
+          position: relative;
+          background: #0b1020;
+          color: #f8fafc;
+          font-family: Inter, Arial, sans-serif;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+
+        .scene-content {
+          width: 100%;
+          height: 100%;
+          padding: 76px 92px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 42px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .orb {
+          position: absolute;
+          border-radius: 999px;
+          filter: blur(32px);
+          opacity: 0.36;
+        }
+
+        .orb-a {
+          width: 360px;
+          height: 360px;
+          background: #22d3ee;
+          right: -120px;
+          top: -90px;
+        }
+
+        .orb-b {
+          width: 300px;
+          height: 300px;
+          background: #34d399;
+          left: -90px;
+          bottom: -80px;
+        }
+
+        .header {
+          max-width: 920px;
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+        }
+
+        .eyebrow {
+          margin: 0;
+          color: #22d3ee;
+          font: 700 18px Consolas, Menlo, monospace;
+          letter-spacing: 0;
+        }
+
+        h1 {
+          margin: 0;
+          font-size: 64px;
+          line-height: 1.02;
+          letter-spacing: 0;
+        }
+
+        .summary {
+          margin: 0;
+          max-width: 780px;
+          color: #cbd5e1;
+          font-size: 25px;
+          line-height: 1.35;
+        }
+
+        .pipeline {
+          display: grid;
+          grid-template-columns: 1fr 54px 1fr 54px 1fr 54px 1fr;
+          align-items: center;
+          gap: 0;
+        }
+
+        .node {
+          min-height: 150px;
+          padding: 26px;
+          border: 1px solid rgba(248, 250, 252, 0.16);
+          background: rgba(18, 26, 46, 0.88);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 8px;
+          box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        }
+
+        .index {
+          color: #fbbf24;
+          font: 700 18px Consolas, Menlo, monospace;
+        }
+
+        .node strong {
+          font-size: 32px;
+          line-height: 1;
+        }
+
+        .node small {
+          color: #cbd5e1;
+          font-size: 18px;
+        }
+
+        .line {
+          height: 3px;
+          background: linear-gradient(90deg, #22d3ee, #34d399);
+          transform-origin: left center;
+        }
+
+        .footer {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 18px;
+        }
+
+        .metric {
+          border-top: 1px solid rgba(248, 250, 252, 0.18);
+          padding-top: 18px;
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+        }
+
+        .metric span {
+          color: #94a3b8;
+          font: 700 16px Consolas, Menlo, monospace;
+        }
+
+        .metric strong {
+          color: #34d399;
+          font-size: 30px;
+        }
+      </style>
+      <script src="./node_modules/gsap/dist/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        tl.from(".eyebrow", { y: 24, opacity: 0, duration: 0.45, ease: "power3.out" }, 0.2);
+        tl.from("h1", { y: 42, opacity: 0, duration: 0.7, ease: "expo.out" }, 0.38);
+        tl.from(".summary", { y: 28, opacity: 0, duration: 0.55, ease: "power2.out" }, 0.78);
+        tl.from(".node", { y: 42, opacity: 0, scale: 0.94, duration: 0.55, stagger: 0.16, ease: "back.out(1.4)" }, 1.3);
+        tl.from(".line", { scaleX: 0, duration: 0.45, stagger: 0.17, ease: "power4.out" }, 1.62);
+        tl.from(".metric", { y: 24, opacity: 0, duration: 0.42, stagger: 0.12, ease: "sine.out" }, 2.55);
+        tl.to(".orb-a", { x: -60, y: 44, duration: 7.8, ease: "sine.inOut" }, 0.4);
+        tl.to(".orb-b", { x: 72, y: -36, duration: 7.8, ease: "sine.inOut" }, 0.4);
+        tl.to(".scene-content", { opacity: 0, y: -18, duration: 0.55, ease: "power2.in" }, 8.25);
+
+        window.__timelines["hyperframes-pipeline"] = tl;
+      </script>
+    </div>
+  </body>
+</html>
