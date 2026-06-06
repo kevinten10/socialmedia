@@ -1,5 +1,7 @@
 # 🎬 社交媒体自动化与数字资产库 (Social Media & Video as Code)
 
+> 当前维护状态、运行方式、验证命令和公开仓库安全说明见 [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)。
+
 本项目不仅包含社交媒体自动化脚本，还包含了一个使用 **React** 和 **Remotion** 框架纯代码生成的 **60秒电影级个人宣传片 (KevinPromo)**，以及一系列展示高阶视觉效果的企业级 Demo。
 
 本文档将重点沉淀我们在构建该 60 秒大片过程中的 **Remotion 深度调研、核心教程、企业级实战经验**，以及**如何使用 AI 提示词 (Prompt) 自动生成高质量视频代码**的独家心得。

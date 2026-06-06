@@ -1,5 +1,11 @@
 target/
 .idea
+.env
+.env.*
+!.env.example
+**/account.json
+**/account.local.json
+**/account.private.json
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
