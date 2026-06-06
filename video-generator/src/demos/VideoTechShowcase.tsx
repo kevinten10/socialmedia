@@ -2,19 +2,16 @@ import React from 'react';
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
 
 type Route = {
-  id: string;
   title: string;
-  label: string;
+  subtitle: string;
   accent: string;
-  x: number;
-  y: number;
-  width: number;
+  start: number;
 };
 
 const routes: Route[] = [
-  { id: 'R1', title: 'Remotion', label: 'React templates + reusable scenes', accent: '#2dd4bf', x: 142, y: 480, width: 480 },
-  { id: 'R2', title: 'HyperFrames', label: 'HTML, CSS, GSAP timeline', accent: '#38bdf8', x: 720, y: 390, width: 520 },
-  { id: 'R3', title: 'FFmpeg', label: 'Batch captions, stitches, delivery', accent: '#f59e0b', x: 1328, y: 500, width: 430 },
+  { title: 'Remotion', subtitle: 'React templates for reusable campaigns', accent: '#2dd4bf', start: 2.15 },
+  { title: 'HyperFrames', subtitle: 'HTML scenes with GSAP motion', accent: '#38bdf8', start: 3.15 },
+  { title: 'FFmpeg', subtitle: 'Packaging, captions, delivery variants', accent: '#f59e0b', start: 4.15 },
 ];
 
 const clamp = {
@@ -23,37 +20,26 @@ const clamp = {
 };
 
 const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
-const easeInOut = Easing.bezier(0.45, 0, 0.55, 1);
+const easeIn = Easing.bezier(0.7, 0, 0.84, 0);
 
-const fadeWindow = (frame: number, fps: number, start: number, end: number) =>
-  interpolate(frame, [start * fps, (start + 0.45) * fps, (end - 0.45) * fps, end * fps], [0, 1, 1, 0], clamp);
-
-const enter = (frame: number, fps: number, start: number, duration = 0.65) =>
+const progress = (frame: number, fps: number, start: number, duration: number) =>
   interpolate(frame, [start * fps, (start + duration) * fps], [0, 1], {
     ...clamp,
     easing: easeOut,
   });
 
-const cardStyle: React.CSSProperties = {
-  position: 'absolute',
-  minHeight: 224,
-  padding: '34px 36px',
-  border: '1px solid rgba(231, 245, 255, 0.22)',
-  background: 'rgba(7, 15, 28, 0.84)',
-  boxShadow: '0 28px 90px rgba(0, 0, 0, 0.38)',
-  backdropFilter: 'blur(8px)',
-};
+const fadeWindow = (frame: number, fps: number, start: number, end: number) =>
+  interpolate(frame, [start * fps, (start + 0.35) * fps, (end - 0.35) * fps, end * fps], [0, 1, 1, 0], clamp);
 
 export const VideoTechShowcase: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
-  const seconds = frame / fps;
-  const outro = interpolate(frame, [durationInFrames - 24, durationInFrames], [1, 0], clamp);
-  const introOpacity = fadeWindow(frame, fps, 0, 3.65);
-  const routesOpacity = fadeWindow(frame, fps, 2.75, 8.25);
-  const finalOpacity = interpolate(frame, [7.5 * fps, 8.15 * fps], [0, 1], { ...clamp, easing: easeOut }) * outro;
-  const scanX = interpolate(frame, [0, durationInFrames], [-360, 2100], clamp);
-  const drift = interpolate(frame, [0, durationInFrames], [0, 1], { ...clamp, easing: easeInOut });
+  const { fps, width, height, durationInFrames } = useVideoConfig();
+  const t = frame / fps;
+  const finalFade = interpolate(frame, [durationInFrames - 22, durationInFrames], [1, 0], { ...clamp, easing: easeIn });
+  const scanY = interpolate(frame, [0, durationInFrames], [-360, height + 360], clamp);
+  const hook = fadeWindow(frame, fps, 0, 2.75);
+  const stack = fadeWindow(frame, fps, 1.8, 8.55);
+  const payoff = interpolate(frame, [7.25 * fps, 8.0 * fps], [0, 1], { ...clamp, easing: easeOut }) * finalFade;
 
   return (
     <AbsoluteFill
@@ -69,100 +55,98 @@ export const VideoTechShowcase: React.FC = () => {
           position: 'absolute',
           inset: 0,
           background:
-            'radial-gradient(circle at 18% 18%, rgba(45, 212, 191, 0.22), transparent 26%), radial-gradient(circle at 72% 35%, rgba(56, 189, 248, 0.18), transparent 28%), linear-gradient(135deg, #05070d 0%, #0a1220 58%, #10100a 100%)',
+            'radial-gradient(circle at 18% 12%, rgba(45, 212, 191, 0.28), transparent 28%), radial-gradient(circle at 76% 42%, rgba(56, 189, 248, 0.22), transparent 32%), linear-gradient(160deg, #05070d 0%, #08111d 58%, #110f07 100%)',
         }}
       />
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          opacity: 0.3,
+          opacity: 0.28,
           backgroundImage:
-            'linear-gradient(rgba(226, 232, 240, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(226, 232, 240, 0.08) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-          transform: `translate3d(${drift * -36}px, ${drift * 28}px, 0)`,
+            'linear-gradient(rgba(226, 232, 240, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(226, 232, 240, 0.09) 1px, transparent 1px)',
+          backgroundSize: '72px 72px',
+          transform: `translate3d(0, ${-t * 18}px, 0)`,
         }}
       />
       <div
         style={{
           position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: scanX,
-          width: 220,
-          background: 'linear-gradient(90deg, transparent, rgba(125, 249, 255, 0.16), transparent)',
-          transform: 'skewX(-12deg)',
+          left: -120,
+          right: -120,
+          top: scanY,
+          height: 260,
+          background: 'linear-gradient(180deg, transparent, rgba(125, 249, 255, 0.16), transparent)',
+          transform: 'skewY(-8deg)',
         }}
       />
 
-      <div style={{ position: 'absolute', left: 90, right: 90, top: 64, height: 42, display: 'flex', justifyContent: 'space-between', color: '#94a3b8', font: '700 24px Consolas, Menlo, monospace' }}>
-        <span>SOCIALMEDIA / VIDEO STACK</span>
-        <span>2026-06-06</span>
+      <div style={{ position: 'absolute', top: 86, left: 66, right: 66, display: 'flex', justifyContent: 'space-between', color: '#94a3b8', font: '800 22px Consolas, Menlo, monospace' }}>
+        <span>SOCIALMEDIA</span>
+        <span>SHORTS STACK</span>
       </div>
 
       <section
         style={{
           position: 'absolute',
-          left: 110,
-          top: 178,
-          width: 1320,
-          opacity: introOpacity,
-          transform: `translateY(${(1 - enter(frame, fps, 0.16, 0.8)) * 58}px)`,
+          top: 236,
+          left: 66,
+          right: 66,
+          opacity: hook,
+          transform: `translateY(${(1 - progress(frame, fps, 0.12, 0.7)) * 70}px)`,
         }}
       >
-        <div style={{ color: '#2dd4bf', font: '800 30px Consolas, Menlo, monospace', marginBottom: 34 }}>FROM PROMPT TO MP4</div>
-        <h1 style={{ margin: 0, fontSize: 124, lineHeight: 0.92, letterSpacing: 0, maxWidth: 1280 }}>
-          Three code paths.
-          <br />
-          One video pipeline.
+        <div style={{ color: '#2dd4bf', font: '900 28px Consolas, Menlo, monospace', marginBottom: 28 }}>FIRST FRAME HOOK</div>
+        <h1 style={{ margin: 0, fontSize: 112, lineHeight: 0.92, letterSpacing: 0 }}>
+          Stop exporting flat demos.
         </h1>
-        <p style={{ margin: '46px 0 0', maxWidth: 940, color: '#cbd5e1', fontSize: 36, lineHeight: 1.28 }}>
-          Remotion for reusable templates, HyperFrames for agent-authored HTML motion, FFmpeg for deterministic delivery.
+        <p style={{ margin: '34px 0 0', color: '#c7d2fe', fontSize: 39, lineHeight: 1.22 }}>
+          Generate social video three ways, then compare what each renderer is actually good at.
         </p>
       </section>
 
-      <section style={{ position: 'absolute', inset: 0, opacity: routesOpacity }}>
-        <div style={{ position: 'absolute', left: 130, top: 164, color: '#f8fafc', fontSize: 56, fontWeight: 800 }}>
-          Pick the renderer by job, not by hype.
+      <section style={{ position: 'absolute', top: 246, left: 66, right: 66, bottom: 360, opacity: stack }}>
+        <div style={{ fontSize: 64, lineHeight: 0.96, fontWeight: 900, marginBottom: 44 }}>
+          The stack that ships.
         </div>
-        <svg width="1920" height="1080" style={{ position: 'absolute', inset: 0 }}>
-          <path d="M382 704 C 560 610, 640 552, 875 525 S 1260 554, 1538 710" fill="none" stroke="rgba(226, 232, 240, 0.18)" strokeWidth="3" />
-          <path
-            d="M382 704 C 560 610, 640 552, 875 525 S 1260 554, 1538 710"
-            fill="none"
-            stroke="#38bdf8"
-            strokeWidth="6"
-            strokeDasharray="42 28"
-            strokeDashoffset={-frame * 7}
-            strokeLinecap="round"
-          />
-        </svg>
-
+        <div style={{ position: 'absolute', top: 190, bottom: 20, left: 42, width: 6, background: 'rgba(248, 250, 252, 0.16)' }} />
+        <div
+          style={{
+            position: 'absolute',
+            top: 190,
+            left: 42,
+            width: 6,
+            height: `${Math.min(100, Math.max(0, (t - 2.1) * 28))}%`,
+            background: 'linear-gradient(#2dd4bf, #38bdf8, #f59e0b)',
+          }}
+        />
         {routes.map((route, index) => {
-          const reveal = enter(frame, fps, 3.05 + index * 0.35, 0.7);
-          const pulse = interpolate(frame, [(4 + index * 0.3) * fps, (5.6 + index * 0.3) * fps, (7 + index * 0.3) * fps], [0, 1, 0], clamp);
+          const show = progress(frame, fps, route.start, 0.62);
+          const y = 176 + index * 270;
+          const pulse = interpolate(frame, [(route.start + 1.0) * fps, (route.start + 2.0) * fps, (route.start + 3.1) * fps], [0, 1, 0], clamp);
           return (
             <article
-              key={route.id}
+              key={route.title}
               style={{
-                ...cardStyle,
-                left: route.x,
-                top: route.y,
-                width: route.width,
-                borderColor: `rgba(${route.accent === '#f59e0b' ? '245, 158, 11' : route.accent === '#38bdf8' ? '56, 189, 248' : '45, 212, 191'}, ${0.28 + pulse * 0.5})`,
-                transform: `translateY(${(1 - reveal) * 54}px) scale(${0.96 + reveal * 0.04})`,
-                opacity: reveal,
+                position: 'absolute',
+                left: 88,
+                right: 0,
+                top: y,
+                minHeight: 210,
+                padding: '34px 34px 32px',
+                border: `2px solid ${route.accent}`,
+                background: 'rgba(7, 17, 31, 0.88)',
+                boxShadow: `0 32px 90px rgba(0, 0, 0, 0.34), 0 0 ${24 + pulse * 30}px ${route.accent}55`,
+                opacity: show,
+                transform: `translateX(${(1 - show) * 68}px) scale(${0.96 + show * 0.04})`,
               }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28 }}>
-                <span style={{ color: route.accent, font: '800 28px Consolas, Menlo, monospace' }}>{route.id}</span>
-                <span style={{ width: 72, height: 6, background: route.accent }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: route.accent, font: '900 26px Consolas, Menlo, monospace', marginBottom: 20 }}>
+                <span>0{index + 1}</span>
+                <span>{index === 0 ? 'TEMPLATE' : index === 1 ? 'MOTION' : 'DELIVERY'}</span>
               </div>
-              <strong style={{ display: 'block', fontSize: 52, lineHeight: 1, marginBottom: 18 }}>{route.title}</strong>
-              <p style={{ margin: 0, color: '#dbeafe', fontSize: 25, lineHeight: 1.28 }}>{route.label}</p>
-              <div style={{ marginTop: 28, height: 10, background: 'rgba(226, 232, 240, 0.1)', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${Math.round((0.52 + pulse * 0.44) * 100)}%`, background: route.accent }} />
-              </div>
+              <strong style={{ display: 'block', fontSize: 58, lineHeight: 1 }}>{route.title}</strong>
+              <p style={{ margin: '18px 0 0', color: '#dbeafe', fontSize: 30, lineHeight: 1.22 }}>{route.subtitle}</p>
             </article>
           );
         })}
@@ -171,27 +155,42 @@ export const VideoTechShowcase: React.FC = () => {
       <section
         style={{
           position: 'absolute',
-          left: 120,
-          right: 120,
-          bottom: 110,
-          minHeight: 210,
-          padding: '36px 44px',
-          borderTop: '1px solid rgba(248, 250, 252, 0.22)',
-          opacity: finalOpacity,
-          transform: `translateY(${(1 - finalOpacity) * 34}px)`,
+          left: 66,
+          right: 66,
+          bottom: 156,
+          paddingTop: 28,
+          borderTop: '2px solid rgba(248, 250, 252, 0.2)',
+          opacity: payoff,
+          transform: `translateY(${(1 - payoff) * 50}px)`,
         }}
       >
-        <div style={{ color: '#f59e0b', font: '800 26px Consolas, Menlo, monospace', marginBottom: 20 }}>RECOMMENDED STACK</div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.25fr 1fr 1fr', gap: 36, alignItems: 'end' }}>
-          <strong style={{ fontSize: 68, lineHeight: 1 }}>Remotion core. HyperFrames lab. FFmpeg delivery.</strong>
-          <p style={{ margin: 0, color: '#cbd5e1', fontSize: 27, lineHeight: 1.28 }}>Keep the durable template engine, add fast HTML experiments, and ship through a boring reliable encoder.</p>
-          <div style={{ display: 'grid', gap: 16, font: '800 24px Consolas, Menlo, monospace', color: '#2dd4bf' }}>
-            <span>TYPECHECK PASS</span>
-            <span>LOCAL RENDER PASS</span>
-            <span>OUTPUT VERIFIED</span>
-          </div>
-        </div>
+        <div style={{ color: '#f59e0b', font: '900 26px Consolas, Menlo, monospace', marginBottom: 24 }}>PAYOFF</div>
+        <strong style={{ display: 'block', fontSize: 62, lineHeight: 0.98 }}>
+          Remotion core.
+          <br />
+          HyperFrames lab.
+          <br />
+          FFmpeg delivery.
+        </strong>
       </section>
+
+      <div
+        style={{
+          position: 'absolute',
+          left: 66,
+          right: 66,
+          bottom: 64,
+          minHeight: 56,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: '#c7d2fe',
+          fontSize: 25,
+          textAlign: 'center',
+        }}
+      >
+        9:16 layout, burned-in text, safe-zone aware.
+      </div>
     </AbsoluteFill>
   );
 };

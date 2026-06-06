@@ -4,6 +4,8 @@ This directory compares code-driven video generation routes around the shared th
 
 > AI-Native Social Media Video Pipeline
 
+The current showcase is optimized as a 9:16 Shorts-first comparison so the outputs can be reviewed in a social feed-like format instead of a desktop slide format.
+
 Generated videos are written to `video-showcase/outputs/`. The output directory is intentionally ignored by Git except for `.gitkeep`, because rendered MP4 files can be large and are review artifacts rather than source.
 
 ## Render Commands
@@ -20,17 +22,18 @@ Generated videos are written to `video-showcase/outputs/`. The output directory 
 
 Generated on 2026-06-06:
 
-| Route | Video | Duration | Size |
-| --- | --- | ---: | ---: |
-| Remotion | `outputs/remotion-daily-sync.mp4` | 10.05s | 1,198,315 bytes |
-| HyperFrames | `outputs/hyperframes-pipeline.mp4` | 9.50s | 1,138,591 bytes |
-| FFmpeg | `outputs/ffmpeg-pipeline-card.mp4` | 8.00s | 68,872 bytes |
+| Route | Video | Format | Duration | Size |
+| --- | --- | --- | ---: | ---: |
+| Remotion | `outputs/remotion-daily-sync.mp4` | 1080x1920 | 11.05s | 1,067,539 bytes |
+| HyperFrames | `outputs/hyperframes-pipeline.mp4` | 1080x1920 | 10.50s | 1,844,214 bytes |
+| FFmpeg | `outputs/ffmpeg-pipeline-card.mp4` | 1080x1920 | 8.50s | 141,813 bytes |
 
 ## Optimization Notes
 
-- Remotion now renders a purpose-built `VideoTechShowcase` composition instead of reusing the daily report demo.
-- HyperFrames uses a Data Drift + Swiss Pulse visual direction with fixed hero-frame layout, GSAP-driven entrances, moving packets, and a stronger HTML-to-video narrative.
-- FFmpeg now uses a richer filter graph, explicit font file, moving scan/packet layers, and native exit-code checking so failed renders do not leave stale MP4s behind.
+- Remotion now renders a purpose-built vertical `VideoTechShowcase` composition instead of reusing the daily report demo.
+- HyperFrames uses a 9:16 Data Drift + Swiss Pulse visual direction with fixed hero-frame layout, GSAP-driven entrances, moving packets, and a stronger HTML-to-video narrative.
+- FFmpeg now uses a richer vertical filter graph, explicit font file, moving scan/packet layers, and native exit-code checking so failed renders do not leave stale MP4s behind.
+- Key text is kept away from top and bottom social UI zones, with burned-in explanatory captions for mute-friendly review.
 
 ## Comparison
 

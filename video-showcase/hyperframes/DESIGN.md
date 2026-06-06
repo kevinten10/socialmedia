@@ -2,7 +2,7 @@
 
 ## Style Prompt
 
-Data Drift meets Swiss Pulse for an AI-native social media automation pipeline. The frame should feel like a technical broadcast package: dark canvas, strict grid, luminous data paths, large editorial typography, and crisp GSAP choreography that proves HTML can behave like a motion system.
+Data Drift meets Swiss Pulse for an AI-native social media automation pipeline in a 9:16 Shorts-first frame. The video should feel like a technical broadcast package adapted for mobile: dark canvas, strict grid, luminous data paths, large readable text, safe-zone-aware captions, and crisp GSAP choreography that proves HTML can behave like a motion system.
 
 ## Colors
 
@@ -25,6 +25,7 @@ Data Drift meets Swiss Pulse for an AI-native social media automation pipeline. 
 - Stagger by visual priority: hook, route labels, stream pulses, proof metrics.
 - Use varied easing: `expo.out`, `power4.out`, `back.out(1.35)`, and `sine.inOut`.
 - Animate transforms and opacity only; keep layout fixed at the hero frame.
+- Keep key text inside the center safe area for vertical social UI overlays.
 
 ## What NOT to Do
 
@@ -33,3 +34,4 @@ Data Drift meets Swiss Pulse for an AI-native social media automation pipeline. 
 - Do not use random timing or random positions.
 - Do not hard-code content outside the 1280x720 canvas.
 - Do not center all content in one floating card.
+- Do not place critical captions in the bottom 220px or top 120px.
