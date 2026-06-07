@@ -8,6 +8,7 @@ import { ThreeDScene } from './demos/ThreeDScene';
 import { GlobeDataFlow } from './demos/GlobeDataFlow';
 import { ScrollSimulation } from './demos/ScrollSimulation';
 import { VideoTechShowcase } from './demos/VideoTechShowcase';
+import { SocialShort } from './demos/SocialShorts';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -21,6 +22,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="GlobeDataFlow" component={GlobeDataFlow} durationInFrames={450} fps={30} width={1920} height={1080} />
       <Composition id="ScrollSimulation" component={ScrollSimulation} durationInFrames={450} fps={30} width={1920} height={1080} />
       <Composition id="VideoTechShowcase" component={VideoTechShowcase} durationInFrames={330} fps={30} width={1080} height={1920} />
+      <Composition id="SocialShortNeon" component={SocialShort} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ variant: 'neon' }} />
+      <Composition id="SocialShortCinema" component={SocialShort} durationInFrames={300} fps={30} width={1080} height={1920} defaultProps={{ variant: 'cinema' }} />
     </>
   );
 };

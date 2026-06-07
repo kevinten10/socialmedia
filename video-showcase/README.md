@@ -35,11 +35,21 @@ Latest local verification: 2026-06-07.
 | Remotion | Rendered | `outputs/remotion-daily-sync.mp4` | 1080x1920 | 11.05s | 1,067,539 bytes | React templates, typed props, reusable data-driven scenes | Heavier React/render setup | Main product templates and repeatable social formats |
 | HyperFrames | Rendered | `outputs/hyperframes-pipeline.mp4` | 1080x1920 | 10.50s | 1,844,214 bytes | HTML/CSS/GSAP authoring with fast motion iteration | Newer ecosystem and stricter video-composition validation | Rapid AI-authored motion prototypes and web-native clips |
 | FFmpeg | Rendered | `outputs/ffmpeg-pipeline-card.mp4` | 1080x1920 | 8.50s | 141,813 bytes | Batch processing, captions, compositing, packaging | Lower-level authoring; filter graphs get dense | Delivery automation, stitching, captions, compression variants |
-| Lottie/dotLottie | Rendered | `outputs/lottie-pipeline.mp4` | 1080x1920 | 8.50s | 351,011 bytes | Lightweight vector UI motion, small source assets, browser playback | Best for graphic/UI motion rather than full scenes | Reusable app animations, UI explainers, overlay assets |
+| Lottie/dotLottie | Rendered | `outputs/lottie-pipeline.mp4` | 1080x1920 | 8.50s | 354,769 bytes | Lightweight vector UI motion, small source assets, browser playback | Best for graphic/UI motion rather than full scenes | Reusable app animations, UI explainers, overlay assets |
 | Manim | Rendered | `outputs/manim-pipeline.mp4` | 1080x1920 | 8.97s | 725,900 bytes | Python-authored algorithm, process, and math explainers | Slower install/render path and more opinionated typography | Technical education, step-by-step diagrams, explainers |
 | Motion Canvas | Skipped locally | `outputs/motion-canvas.skipped.txt` | n/a | n/a | n/a | TypeScript programmatic graphics and timeline scenes | No supported `@motion-canvas/cli` package was available in npm during local integration; source and Vite check are included | Future route when a stable headless/export workflow is available |
 | Blender Python | Skipped locally | `outputs/blender.skipped.txt` | n/a | n/a | n/a | 3D scenes, cameras, lighting, product-style shots | Requires local `blender` binary and longer render times | 3D product shots and cinematic inserts |
 | AI Video APIs | Skipped locally | `outputs/ai-video.skipped.txt` | n/a | n/a | n/a | Realistic background footage and generative b-roll | Requires paid/limited API keys and provider-specific safety/latency constraints | Optional background or source-footage generation |
+
+## Social Shorts Outputs
+
+These samples are the newer self-media direction: Remotion and HyperFrames are used for primary visuals, while FFmpeg finalizes delivery MP4s. They are intentionally less like capability tables and more like polished 9:16 short-form creative directions.
+
+| Output | Primary renderer | Style | Resolution | Duration | Size |
+| --- | --- | --- | --- | ---: | ---: |
+| `outputs/social-neon-burst.mp4` | Remotion + FFmpeg | Neon glitch hook, kinetic caption stickers, motion-poster energy | 1080x1920 | 10.00s | 3,637,037 bytes |
+| `outputs/social-cinema-launch.mp4` | Remotion + FFmpeg | Cinematic trailer framing, launch-poster typography, premium glow | 1080x1920 | 10.00s | 1,596,036 bytes |
+| `outputs/social-hypercut-lab.mp4` | HyperFrames + FFmpeg | HTML/GSAP fast-cut creator workflow with phone-card motion | 1080x1920 | 9.60s | 2,206,980 bytes |
 
 ## Route Notes
 

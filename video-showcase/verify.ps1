@@ -6,7 +6,10 @@ $outputs = @(
   "hyperframes-pipeline.mp4",
   "ffmpeg-pipeline-card.mp4",
   "lottie-pipeline.mp4",
-  "manim-pipeline.mp4"
+  "manim-pipeline.mp4",
+  "social-neon-burst.mp4",
+  "social-cinema-launch.mp4",
+  "social-hypercut-lab.mp4"
 )
 
 foreach ($name in $outputs) {

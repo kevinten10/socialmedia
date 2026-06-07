@@ -1,0 +1,12 @@
+{
+  "name": "social-shorts-hyperframes",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "hyperframes lint",
+    "render": "hyperframes render --output ../../outputs/social-hypercut-lab.mp4 --quality draft"
+  },
+  "dependencies": {
+    "gsap": "3.14.2"
+  }
+}

@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Social Hypercut Lab</title>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="social-hypercut-lab"
+      data-start="0"
+      data-duration="9.6"
+      data-track-index="0"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="noise" data-layout-ignore></div>
+      <div class="rush rush-a" data-layout-ignore></div>
+      <div class="rush rush-b" data-layout-ignore></div>
+      <div class="flash" data-layout-ignore></div>
+
+      <main class="stage">
+        <header class="meta">
+          <span>HYPERFRAMES CUT</span>
+          <span>HTML + GSAP</span>
+        </header>
+
+        <section class="hook">
+          <p>FIRST 2 SECONDS</p>
+          <h1>Make the scroll stop.</h1>
+        </section>
+
+        <section class="burst">
+          <div class="phone phone-left">
+            <strong>HOOK</strong>
+            <span>0.0s impact frame</span>
+          </div>
+          <div class="phone phone-mid">
+            <strong>MOTION</strong>
+            <span>cuts every beat</span>
+          </div>
+          <div class="phone phone-right">
+            <strong>PAYOFF</strong>
+            <span>one clean ask</span>
+          </div>
+        </section>
+
+        <section class="captions">
+          <div class="line line-a">Prompt becomes shots.</div>
+          <div class="line line-b">Shots become rhythm.</div>
+          <div class="line line-c">Rhythm becomes retention.</div>
+        </section>
+
+        <footer class="close">
+          <span>SHIP THE CUT</span>
+          <strong>not the spreadsheet</strong>
+        </footer>
+      </main>
+
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        #root {
+          position: relative;
+          width: 1080px;
+          height: 1920px;
+          overflow: hidden;
+          background: #06040a;
+          color: #fff;
+          font-family: Inter, Arial, sans-serif;
+        }
+
+        .noise {
+          position: absolute;
+          inset: 0;
+          opacity: 0.45;
+          background:
+            linear-gradient(145deg, #06040a 0%, #0b1026 42%, #250714 100%),
+            radial-gradient(circle at 50% 24%, rgba(236, 72, 153, 0.28), transparent 32%);
+        }
+
+        .noise::after {
+          content: "";
+          position: absolute;
+          inset: -120px;
+          opacity: 0.26;
+          background-image:
+            linear-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+          background-size: 48px 48px;
+        }
+
+        .rush {
+          position: absolute;
+          left: -240px;
+          right: -240px;
+          height: 260px;
+          transform: skewY(-12deg);
+          filter: blur(0.2px);
+        }
+
+        .rush-a {
+          top: -260px;
+          background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.42), transparent);
+        }
+
+        .rush-b {
+          bottom: -300px;
+          background: linear-gradient(180deg, transparent, rgba(249, 115, 22, 0.38), transparent);
+        }
+
+        .flash {
+          position: absolute;
+          inset: 0;
+          background: #fff;
+          opacity: 0;
+        }
+
+        .stage {
+          position: relative;
+          z-index: 2;
+          width: 100%;
+          height: 100%;
+          padding: 76px 62px 92px;
+        }
+
+        .meta {
+          display: flex;
+          justify-content: space-between;
+          color: #67e8f9;
+          font: 900 23px Consolas, Menlo, monospace;
+        }
+
+        .hook {
+          position: absolute;
+          left: 62px;
+          right: 62px;
+          top: 245px;
+        }
+
+        .hook p {
+          margin: 0 0 26px;
+          color: #fb923c;
+          font: 900 30px Consolas, Menlo, monospace;
+        }
+
+        .hook h1 {
+          margin: 0;
+          max-width: 880px;
+          font-size: 118px;
+          line-height: 0.88;
+          letter-spacing: 0;
+        }
+
+        .burst {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 700px;
+          height: 610px;
+        }
+
+        .phone {
+          position: absolute;
+          width: 350px;
+          height: 540px;
+          padding: 34px;
+          border: 3px solid rgba(255, 255, 255, 0.24);
+          background:
+            linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.03)),
+            radial-gradient(circle at 50% 20%, rgba(34,211,238,0.24), transparent 44%);
+          box-shadow: 0 40px 120px rgba(0, 0, 0, 0.48), 0 0 70px rgba(34, 211, 238, 0.22);
+        }
+
+        .phone-left {
+          left: 62px;
+          top: 42px;
+          transform: rotate(-7deg);
+          border-color: #22d3ee;
+        }
+
+        .phone-mid {
+          left: 365px;
+          top: 0;
+          transform: rotate(2deg);
+          border-color: #f97316;
+          z-index: 2;
+        }
+
+        .phone-right {
+          right: 62px;
+          top: 78px;
+          transform: rotate(7deg);
+          border-color: #a78bfa;
+        }
+
+        .phone strong {
+          display: block;
+          margin-top: 260px;
+          font-size: 54px;
+          line-height: 0.95;
+        }
+
+        .phone span {
+          display: block;
+          margin-top: 16px;
+          color: #dbeafe;
+          font-size: 26px;
+          line-height: 1.2;
+        }
+
+        .captions {
+          position: absolute;
+          left: 62px;
+          right: 62px;
+          top: 1290px;
+        }
+
+        .line {
+          display: inline-flex;
+          margin: 0 14px 18px 0;
+          padding: 18px 24px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 2px solid rgba(255, 255, 255, 0.2);
+          font-size: 34px;
+          font-weight: 900;
+          line-height: 1;
+        }
+
+        .line-b {
+          color: #020617;
+          background: #67e8f9;
+        }
+
+        .line-c {
+          color: #020617;
+          background: #fb923c;
+        }
+
+        .close {
+          position: absolute;
+          left: 62px;
+          right: 62px;
+          bottom: 100px;
+          min-height: 330px;
+          padding-top: 30px;
+          border-top: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .close span {
+          display: block;
+          color: #67e8f9;
+          font: 900 28px Consolas, Menlo, monospace;
+          margin-bottom: 22px;
+        }
+
+        .close strong {
+          display: block;
+          font-size: 72px;
+          line-height: 0.92;
+          text-transform: uppercase;
+        }
+      </style>
+      <script src="./node_modules/gsap/dist/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        tl.from(".meta", { y: -18, opacity: 0, duration: 0.3, ease: "power4.out" }, 0.08);
+        tl.from(".hook p", { x: -44, opacity: 0, duration: 0.34, ease: "expo.out" }, 0.18);
+        tl.from(".hook h1", { y: 80, opacity: 0, scale: 0.96, duration: 0.68, ease: "expo.out" }, 0.32);
+        tl.to(".flash", { opacity: 0.55, duration: 0.05, repeat: 1, yoyo: true }, 0.9);
+        tl.to(".rush-a", { y: 2350, duration: 7.6, ease: "sine.inOut" }, 0.1);
+        tl.to(".rush-b", { y: -2300, duration: 7.2, ease: "sine.inOut" }, 0.25);
+        tl.from(".phone", { y: 160, opacity: 0, scale: 0.86, duration: 0.52, stagger: 0.16, ease: "back.out(1.45)" }, 1.25);
+        tl.to(".phone-mid", { y: -34, scale: 1.05, duration: 0.7, ease: "power2.inOut" }, 2.7);
+        tl.to(".phone-left", { x: -18, rotation: -10, duration: 0.7, ease: "power2.inOut" }, 2.7);
+        tl.to(".phone-right", { x: 18, rotation: 10, duration: 0.7, ease: "power2.inOut" }, 2.7);
+        tl.from(".line", { y: 42, opacity: 0, duration: 0.36, stagger: 0.15, ease: "power4.out" }, 4.08);
+        tl.to(".flash", { opacity: 0.42, duration: 0.04, repeat: 3, yoyo: true }, 5.65);
+        tl.from(".close span", { y: 22, opacity: 0, duration: 0.34, ease: "expo.out" }, 6.55);
+        tl.from(".close strong", { y: 60, opacity: 0, duration: 0.62, ease: "expo.out" }, 6.8);
+        tl.to(".stage", { opacity: 0, y: -28, duration: 0.5, ease: "power2.in" }, 9.05);
+
+        window.__timelines["social-hypercut-lab"] = tl;
+      </script>
+    </div>
+  </body>
+</html>

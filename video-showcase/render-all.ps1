@@ -8,4 +8,5 @@ $ErrorActionPreference = "Stop"
 & (Join-Path $PSScriptRoot "motion-canvas\render.ps1")
 & (Join-Path $PSScriptRoot "blender\render.ps1")
 & (Join-Path $PSScriptRoot "ai-video\render.ps1")
+& (Join-Path $PSScriptRoot "social-shorts\render.ps1")
 & (Join-Path $PSScriptRoot "verify.ps1")
