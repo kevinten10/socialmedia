@@ -4,37 +4,39 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
 
 /**
  * Twitter发送器
  */
 public class TwitterSender {
 
-    // 设置Twitter API密钥
-    private static String consumerKey = "your_consumer_key";
-    private static String consumerSecret = "your_consumer_secret";
-    private static String accessToken = "your_access_token";
-    private static String accessTokenSecret = "your_access_token_secret";
+    private final Twitter twitter;
+
+    public TwitterSender(Twitter twitter) {
+        this.twitter = twitter;
+    }
 
     /**
      * 发送Twitter消息
      *
      * @apiNote 当前twitter封禁了相关api
      */
-    public static void send(String message) {
-        // 创建Twitter实例
+    public static Status sendWithDefaultClient(String message) {
         Twitter twitter = new TwitterFactory().getInstance();
-        twitter.setOAuthConsumer(consumerKey, consumerSecret);
-        AccessToken token = new AccessToken(accessToken, accessTokenSecret);
-        twitter.setOAuthAccessToken(token);
+        TwitterCredentials.from(System.getenv()).applyTo(twitter);
 
-        // 发送Twitter消息
+        return new TwitterSender(twitter).send(message);
+    }
+
+    public Status send(String message) {
+        if (message == null || message.trim().isEmpty()) {
+            throw new IllegalArgumentException("message must not be blank");
+        }
+
         try {
-            Status status = twitter.updateStatus("Hello Twitter!");
-            System.out.println("Successfully updated the status to [" + status.getText() + "].");
+            return twitter.updateStatus(message);
         } catch (TwitterException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Failed to send Twitter status", e);
         }
     }
 }

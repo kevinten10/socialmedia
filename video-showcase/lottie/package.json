@@ -1,0 +1,13 @@
+{
+  "name": "video-showcase-lottie",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node render-lottie.mjs"
+  },
+  "dependencies": {
+    "lottie-web": "^5.13.0",
+    "playwright": "^1.60.0"
+  }
+}

@@ -13,7 +13,9 @@
     "render:3d": "npx remotion render src/index.tsx ThreeDScene out_3d.mp4",
     "render:globe": "npx remotion render src/index.tsx GlobeDataFlow out_globe.mp4",
     "render:scroll": "npx remotion render src/index.tsx ScrollSimulation out_scroll.mp4",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck",
+    "test": "npm run typecheck"
   },
   "keywords": [],
   "author": "",

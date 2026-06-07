@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HyperFrames Shorts Showcase</title>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="hyperframes-pipeline"
+      data-start="0"
+      data-duration="10.5"
+      data-track-index="0"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="grid" data-layout-ignore></div>
+      <div class="scan-plane" data-layout-ignore></div>
+      <div class="light-field" data-layout-ignore></div>
+
+      <main class="scene-content">
+        <header class="topbar">
+          <span>HYPERFRAMES</span>
+          <span>9:16 HTML VIDEO</span>
+        </header>
+
+        <section class="hero">
+          <p class="eyebrow">FIRST FRAME HOOK</p>
+          <h1>HTML can become a social video.</h1>
+          <p class="summary">Write the frame like a web page. Animate it like a launch reel. Capture it as MP4.</p>
+        </section>
+
+        <section class="track" aria-label="HyperFrames production track">
+          <div class="rail"></div>
+          <article class="node node-a">
+            <span>01</span>
+            <strong>Brief</strong>
+            <small>Prompt, data, target channel</small>
+          </article>
+          <article class="node node-b">
+            <span>02</span>
+            <strong>Compose</strong>
+            <small>HTML, CSS, safe zones</small>
+          </article>
+          <article class="node node-c">
+            <span>03</span>
+            <strong>Animate</strong>
+            <small>GSAP, deterministic timing</small>
+          </article>
+          <article class="node node-d">
+            <span>04</span>
+            <strong>Render</strong>
+            <small>Frame capture to MP4</small>
+          </article>
+          <div class="packet packet-a"></div>
+          <div class="packet packet-b"></div>
+        </section>
+
+        <footer class="caption">
+          <strong>Best fit:</strong>
+          <span>fast agent-authored visual experiments.</span>
+        </footer>
+      </main>
+
+      <style>
+        #root {
+          width: 1080px;
+          height: 1920px;
+          overflow: hidden;
+          position: relative;
+          background: #05070d;
+          color: #f8fafc;
+          font-family: Inter, Arial, sans-serif;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+
+        .grid {
+          position: absolute;
+          inset: 0;
+          opacity: 0.32;
+          background-image:
+            linear-gradient(rgba(248, 250, 252, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(248, 250, 252, 0.08) 1px, transparent 1px);
+          background-size: 54px 54px;
+        }
+
+        .scan-plane {
+          position: absolute;
+          left: -90px;
+          right: -90px;
+          top: -320px;
+          height: 300px;
+          transform: skewY(-9deg);
+          background: linear-gradient(180deg, transparent, rgba(56, 189, 248, 0.22), transparent);
+        }
+
+        .light-field {
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(circle at 18% 12%, rgba(45, 212, 191, 0.24), transparent 28%),
+            radial-gradient(circle at 78% 44%, rgba(56, 189, 248, 0.18), transparent 30%),
+            linear-gradient(150deg, rgba(5, 7, 13, 0), rgba(245, 158, 11, 0.07));
+        }
+
+        .scene-content {
+          position: relative;
+          z-index: 2;
+          width: 100%;
+          height: 100%;
+          padding: 76px 64px 106px;
+          display: flex;
+          flex-direction: column;
+          gap: 48px;
+        }
+
+        .topbar {
+          display: flex;
+          justify-content: space-between;
+          color: #94a3b8;
+          font: 800 22px Consolas, Menlo, monospace;
+          min-height: 32px;
+        }
+
+        .hero {
+          min-height: 430px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
+
+        .eyebrow {
+          margin: 0 0 26px;
+          color: #2dd4bf;
+          font: 900 28px Consolas, Menlo, monospace;
+        }
+
+        h1 {
+          margin: 0;
+          max-width: 940px;
+          font-size: 92px;
+          line-height: 0.95;
+          letter-spacing: 0;
+        }
+
+        .summary {
+          margin: 34px 0 0;
+          max-width: 850px;
+          color: #c7d2fe;
+          font-size: 38px;
+          line-height: 1.24;
+        }
+
+        .track {
+          position: relative;
+          flex: 1;
+          min-height: 900px;
+        }
+
+        .rail {
+          position: absolute;
+          top: 34px;
+          bottom: 42px;
+          left: 40px;
+          width: 6px;
+          background: rgba(248, 250, 252, 0.16);
+          transform-origin: top center;
+        }
+
+        .node {
+          position: absolute;
+          left: 92px;
+          right: 0;
+          min-height: 172px;
+          padding: 30px 32px;
+          border: 2px solid rgba(248, 250, 252, 0.18);
+          background: rgba(7, 17, 31, 0.9);
+          box-shadow: 0 28px 86px rgba(0, 0, 0, 0.34);
+        }
+
+        .node-a {
+          top: 10px;
+          border-color: #2dd4bf;
+        }
+
+        .node-b {
+          top: 240px;
+          border-color: #38bdf8;
+        }
+
+        .node-c {
+          top: 470px;
+          border-color: #f59e0b;
+        }
+
+        .node-d {
+          top: 700px;
+          border-color: rgba(248, 250, 252, 0.55);
+        }
+
+        .node span {
+          color: #f59e0b;
+          font: 900 22px Consolas, Menlo, monospace;
+        }
+
+        .node strong {
+          display: block;
+          margin-top: 14px;
+          font-size: 50px;
+          line-height: 1;
+        }
+
+        .node small {
+          display: block;
+          margin-top: 14px;
+          color: #dbeafe;
+          font-size: 28px;
+          line-height: 1.16;
+        }
+
+        .packet {
+          position: absolute;
+          left: 30px;
+          top: 34px;
+          width: 26px;
+          height: 26px;
+          border-radius: 4px;
+          background: #38bdf8;
+          box-shadow: 0 0 32px rgba(56, 189, 248, 0.85);
+        }
+
+        .packet-b {
+          background: #2dd4bf;
+          box-shadow: 0 0 32px rgba(45, 212, 191, 0.85);
+        }
+
+        .caption {
+          min-height: 96px;
+          padding-top: 26px;
+          border-top: 2px solid rgba(248, 250, 252, 0.2);
+          display: flex;
+          gap: 14px;
+          align-items: baseline;
+          color: #c7d2fe;
+          font-size: 31px;
+          line-height: 1.2;
+        }
+
+        .caption strong {
+          color: #f59e0b;
+        }
+      </style>
+      <script src="./node_modules/gsap/dist/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        tl.from(".topbar", { y: -18, opacity: 0, duration: 0.36, ease: "power4.out" }, 0.18);
+        tl.from(".eyebrow", { x: -34, opacity: 0, duration: 0.42, ease: "expo.out" }, 0.32);
+        tl.from("h1", { y: 56, opacity: 0, duration: 0.72, ease: "expo.out" }, 0.5);
+        tl.from(".summary", { y: 36, opacity: 0, duration: 0.52, ease: "power3.out" }, 0.86);
+        tl.from(".rail", { scaleY: 0, duration: 0.7, ease: "power4.out" }, 1.28);
+        tl.from(".node", { x: 58, scale: 0.95, opacity: 0, duration: 0.56, stagger: 0.22, ease: "back.out(1.35)" }, 1.55);
+        tl.from(".caption", { opacity: 0, duration: 0.42, ease: "sine.out" }, 2.85);
+
+        tl.to(".packet-a", { y: 850, duration: 4.2, ease: "sine.inOut" }, 2.28);
+        tl.to(".packet-b", { y: 705, duration: 3.4, ease: "power2.inOut" }, 2.72);
+        tl.to(".scan-plane", { y: 2460, duration: 8.8, ease: "sine.inOut" }, 0.5);
+        tl.to(".grid", { y: -54, duration: 9.4, ease: "sine.inOut" }, 0.3);
+        tl.to(".node-b", { y: -12, duration: 1.15, ease: "sine.inOut" }, 5.35);
+        tl.to(".node-c", { y: 12, duration: 1.15, ease: "sine.inOut" }, 5.35);
+        tl.to(".caption strong", { color: "#2dd4bf", duration: 0.35, ease: "power2.out" }, 7.1);
+        tl.to(".scene-content", { opacity: 0, y: -24, duration: 0.55, ease: "power2.in" }, 9.82);
+
+        window.__timelines["hyperframes-pipeline"] = tl;
+      </script>
+    </div>
+  </body>
+</html>
