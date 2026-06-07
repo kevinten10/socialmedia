@@ -4,7 +4,9 @@ $showcase = Resolve-Path $PSScriptRoot
 $outputs = @(
   "remotion-daily-sync.mp4",
   "hyperframes-pipeline.mp4",
-  "ffmpeg-pipeline-card.mp4"
+  "ffmpeg-pipeline-card.mp4",
+  "lottie-pipeline.mp4",
+  "manim-pipeline.mp4"
 )
 
 foreach ($name in $outputs) {
@@ -14,4 +16,18 @@ foreach ($name in $outputs) {
     throw "Output is empty: $path"
   }
   Write-Host "$name $($file.Length) bytes"
+}
+
+$optionalMarkers = @(
+  "motion-canvas.skipped.txt",
+  "blender.skipped.txt",
+  "ai-video.skipped.txt"
+)
+
+foreach ($name in $optionalMarkers) {
+  $path = Join-Path $showcase "outputs\$name"
+  if (Test-Path -LiteralPath $path) {
+    $message = Get-Content -LiteralPath $path -Raw
+    Write-Host "$name $($message.Trim())"
+  }
 }

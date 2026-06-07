@@ -1,6 +1,11 @@
 target/
 .idea
 **/node_modules/
+**/.venv/
+**/__pycache__/
+*.pyc
+video-showcase/manim/media/
+video-showcase/motion-canvas/output/
 .env
 .env.*
 !.env.example

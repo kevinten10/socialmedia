@@ -1,56 +1,71 @@
 # Video Generation Showcase
 
-This directory compares code-driven video generation routes around the shared theme:
+This directory compares code-driven and optional AI-assisted video generation routes around the shared theme:
 
 > AI-Native Social Media Video Pipeline
 
-The current showcase is optimized as a 9:16 Shorts-first comparison so the outputs can be reviewed in a social feed-like format instead of a desktop slide format.
+The showcase is optimized for 9:16 Shorts-first review. Runnable routes target 1080x1920 MP4 output with a clear first-frame hook, feed-safe text placement, and one visual emphasis per technology.
 
-Generated videos are written to `video-showcase/outputs/`. The output directory is intentionally ignored by Git except for `.gitkeep`, because rendered MP4 files can be large and are review artifacts rather than source.
+Generated videos are written to `video-showcase/outputs/`. The output directory is intentionally ignored by Git except for `.gitkeep`, because rendered MP4 files, frame captures, and skipped markers are review artifacts rather than source.
 
 ## Render Commands
 
 ```powershell
 .\video-showcase\render-all.ps1
+.\video-showcase\verify.ps1
+
 .\video-showcase\remotion\render.ps1
 .\video-showcase\hyperframes\render.ps1
 .\video-showcase\ffmpeg\render.ps1
-.\video-showcase\verify.ps1
+.\video-showcase\lottie\render.ps1
+.\video-showcase\manim\render.ps1
+.\video-showcase\motion-canvas\render.ps1
+.\video-showcase\blender\render.ps1
+.\video-showcase\ai-video\render.ps1
 ```
+
+`render-all.ps1` runs every route. Optional integrations write a clear `*.skipped.txt` marker when the required local binary, CLI, or API key is unavailable, and they do not block the free local render pipeline.
 
 ## Latest Local Outputs
 
-Generated on 2026-06-06:
+Latest local verification: 2026-06-07.
 
-| Route | Video | Format | Duration | Size |
-| --- | --- | --- | ---: | ---: |
-| Remotion | `outputs/remotion-daily-sync.mp4` | 1080x1920 | 11.05s | 1,067,539 bytes |
-| HyperFrames | `outputs/hyperframes-pipeline.mp4` | 1080x1920 | 10.50s | 1,844,214 bytes |
-| FFmpeg | `outputs/ffmpeg-pipeline-card.mp4` | 1080x1920 | 8.50s | 141,813 bytes |
+| Technology route | Local status | Output file | Resolution | Duration | Size | Strength | Limitation | Recommended use |
+| --- | --- | --- | --- | ---: | ---: | --- | --- | --- |
+| Remotion | Rendered | `outputs/remotion-daily-sync.mp4` | 1080x1920 | 11.05s | 1,067,539 bytes | React templates, typed props, reusable data-driven scenes | Heavier React/render setup | Main product templates and repeatable social formats |
+| HyperFrames | Rendered | `outputs/hyperframes-pipeline.mp4` | 1080x1920 | 10.50s | 1,844,214 bytes | HTML/CSS/GSAP authoring with fast motion iteration | Newer ecosystem and stricter video-composition validation | Rapid AI-authored motion prototypes and web-native clips |
+| FFmpeg | Rendered | `outputs/ffmpeg-pipeline-card.mp4` | 1080x1920 | 8.50s | 141,813 bytes | Batch processing, captions, compositing, packaging | Lower-level authoring; filter graphs get dense | Delivery automation, stitching, captions, compression variants |
+| Lottie/dotLottie | Rendered | `outputs/lottie-pipeline.mp4` | 1080x1920 | 8.50s | 351,011 bytes | Lightweight vector UI motion, small source assets, browser playback | Best for graphic/UI motion rather than full scenes | Reusable app animations, UI explainers, overlay assets |
+| Manim | Rendered | `outputs/manim-pipeline.mp4` | 1080x1920 | 8.97s | 725,900 bytes | Python-authored algorithm, process, and math explainers | Slower install/render path and more opinionated typography | Technical education, step-by-step diagrams, explainers |
+| Motion Canvas | Skipped locally | `outputs/motion-canvas.skipped.txt` | n/a | n/a | n/a | TypeScript programmatic graphics and timeline scenes | No supported `@motion-canvas/cli` package was available in npm during local integration; source and Vite check are included | Future route when a stable headless/export workflow is available |
+| Blender Python | Skipped locally | `outputs/blender.skipped.txt` | n/a | n/a | n/a | 3D scenes, cameras, lighting, product-style shots | Requires local `blender` binary and longer render times | 3D product shots and cinematic inserts |
+| AI Video APIs | Skipped locally | `outputs/ai-video.skipped.txt` | n/a | n/a | n/a | Realistic background footage and generative b-roll | Requires paid/limited API keys and provider-specific safety/latency constraints | Optional background or source-footage generation |
 
-## Optimization Notes
+## Route Notes
 
-- Remotion now renders a purpose-built vertical `VideoTechShowcase` composition instead of reusing the daily report demo.
-- HyperFrames uses a 9:16 Data Drift + Swiss Pulse visual direction with fixed hero-frame layout, GSAP-driven entrances, moving packets, and a stronger HTML-to-video narrative.
-- FFmpeg now uses a richer vertical filter graph, explicit font file, moving scan/packet layers, and native exit-code checking so failed renders do not leave stale MP4s behind.
-- Key text is kept away from top and bottom social UI zones, with burned-in explanatory captions for mute-friendly review.
+- Remotion renders a purpose-built vertical `VideoTechShowcase` composition, emphasizing React components, typed data, and reusable social templates.
+- HyperFrames uses HTML, CSS, and GSAP animation to show the same pipeline as an energetic web-native motion clip.
+- FFmpeg uses a vertical filter graph with explicit font selection, moving scan/packet layers, and native exit-code checking so failed renders do not leave stale MP4s behind.
+- Lottie builds a local Lottie JSON animation and captures it through Playwright/Chrome before encoding frames with FFmpeg.
+- Manim creates a Python-authored process explainer with scene graph primitives, timeline animation, and a 9:16-safe layout.
+- Motion Canvas includes a Vite-backed TypeScript scene scaffold and a render script that validates the local package setup, then skips automated MP4 output until a supported headless exporter is available.
+- Blender and AI video routes are optional by design. They document environment variables or binaries and produce skipped markers when unavailable.
 
-## Comparison
+## Research References
 
-| Route | Source style | Best at | Tradeoff | Output |
-| --- | --- | --- | --- | --- |
-| Remotion | React + TypeScript components | Reusable data templates, controlled animation, existing project fit | Heavier React/render pipeline | `outputs/remotion-daily-sync.mp4` |
-| HyperFrames | HTML + CSS + GSAP timeline | Agent-authored clips, captions, web-native motion design | Newer ecosystem and stricter composition rules | `outputs/hyperframes-pipeline.mp4` |
-| FFmpeg | Filter graph and command-line processing | Batch editing, captions, compositing, transcoding, packaging | Lower-level authoring experience | `outputs/ffmpeg-pipeline-card.mp4` |
+Official/current references checked while integrating the routes:
 
-## Evaluated But Not Used As Required Outputs
-
-| Route | Local status | Decision |
-| --- | --- | --- |
-| Motion Canvas | Direct `@motion-canvas/cli` lookup was not available from npm in this environment | Good future candidate, but not used for the first runnable showcase |
-| Blender Python | `blender` command not available locally | Skipped and documented; use when Blender is installed |
-| Manim | Python is available, but Manim requires additional native rendering dependencies | Deferred in favor of FFmpeg for a reliable third output |
+- Remotion documentation: https://www.remotion.dev/docs/
+- HyperFrames CLI and composition workflow: https://docs.hyperframes.ai/
+- FFmpeg documentation: https://ffmpeg.org/documentation.html
+- Motion Canvas rendering/export docs: https://motioncanvas.io/docs/rendering/
+- Manim Community install and render docs: https://docs.manim.community/en/stable/installation.html
+- Lottie format and dotLottie web renderer docs: https://docs.lottiefiles.com/en/format/lottie-json and https://github.com/LottieFiles/dotlottie-web
+- Blender command-line rendering: https://docs.blender.org/manual/en/latest/advanced/command_line/render.html
+- OpenAI video generation guide: https://platform.openai.com/docs/guides/video-generation
+- Runway API docs: https://docs.dev.runwayml.com/api/
+- Luma video generation docs: https://docs.lumalabs.ai/docs/video-generation
 
 ## Recommendation
 
-Keep Remotion as the main project route. Add HyperFrames for fast AI-authored HTML/GSAP experiments. Use FFmpeg as the final automation layer for stitching, captions, compression, and delivery variants.
+Keep Remotion as the main project route for reusable production templates. Use HyperFrames for quick HTML/GSAP experiments, FFmpeg as the delivery automation layer, Lottie for lightweight reusable UI motion, and Manim for explainers. Treat Motion Canvas, Blender, and AI video APIs as optional expansion routes until their local exporter, binary, or API-key requirements are available.
